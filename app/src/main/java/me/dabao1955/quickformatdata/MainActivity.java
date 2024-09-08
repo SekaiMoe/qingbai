@@ -21,7 +21,7 @@ public class MainActivity extends Activity {
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                String result1 = executeCommand("su -c /system/bin/mke2fs /data");
+                String result1 = executeCommand("su -c /system/bin/mke2fs /dev/block/by-name/userdata");
 				Toast.makeText(MainActivity.this, "手机将在5秒钟后重启！", Toast.LENGTH_SHORT).show();
 				String result2 = executeCommand("sleep 5s && su -c reboot"); 
 
