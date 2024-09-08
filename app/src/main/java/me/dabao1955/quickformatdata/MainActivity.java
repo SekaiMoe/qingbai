@@ -16,7 +16,7 @@ public class MainActivity extends Activity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle("要留清白在人间");
-        builder.setMessage("请选择 data 分区格式以进行格式化 data 分区操作");
+        builder.setMessage("请选择手机 data 分区的文件系统以进行格式化 data 分区操作\n警告：请确保手机里没有重要数据！");
 
         builder.setPositiveButton("ext4", new DialogInterface.OnClickListener() {
             @Override
