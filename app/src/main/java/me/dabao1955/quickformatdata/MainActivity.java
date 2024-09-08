@@ -16,12 +16,12 @@ public class MainActivity extends Activity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle("要留清白在人间");
-        builder.setMessage("点击确定键进行格式化 data 分区操作");
+        builder.setMessage("请选择 data 分区格式以进行格式化 data 分区操作");
 
-        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("ext4", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                String result1 = executeCommand("su -c /system/bin/mke2fs /dev/block/by-name/userdata");
+                String result1 = executeCommand("su -c /system/bin/mke2fs -t ext4 /dev/block/by-name/userdata");
 				Toast.makeText(MainActivity.this, "手机将在5秒钟后重启！", Toast.LENGTH_SHORT).show();
 				String result2 = executeCommand("sleep 5s && su -c reboot"); 
 
@@ -39,6 +39,15 @@ public class MainActivity extends Activity {
                 resultDialog.show();*/
             }
         });
+	builder.setNegativeButton("f2fs", new DialogInterface.OnClickListener() {
+		@Override
+		public void onClick(DialogInterface dialog, int which) {
+			String result1 = executeCommand("su -c /system/bin/mke2fs -t f2fs /dev/block/by-name/userdata");
+			Toast.makeText(MainActivity.this, "手机将在5秒钟后重启！", Toast.LENGTH_SHORT).show();
+			String result2 = executeCommand("sleep 5s && su -c reboot"); 
+			dialog.dismiss();
+			}
+		});
         AlertDialog dialog = builder.create();
         dialog.show();
     }
