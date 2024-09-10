@@ -97,7 +97,7 @@ public class MainActivity extends Activity {
     private boolean isDeviceRooted() {
         Process process = null;
         try {
-            process = Runtime.getRuntime().exec("id");
+            process = Runtime.getRuntime().exec("su -c id");
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String line;
             while ((line = reader.readLine()) != null) {
